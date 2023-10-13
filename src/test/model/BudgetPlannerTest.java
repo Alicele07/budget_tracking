@@ -23,6 +23,8 @@ class BudgetPlannerTest {
     void testGetListOfExpensesOneExpense() {
         Expense e = new Expense("grocery", Category.SUPPLIES, 400);
         testBudgetPlanner.addExpense(e);
+        assertEquals(String.format("%s%10s%6s\n", "grocery", Category.SUPPLIES, 400),
+                testBudgetPlanner.getListOfExpenses());
         assertEquals(1, testBudgetPlanner.getNumOfExpenses());
         assertEquals(400, testBudgetPlanner.getSumOfExpenses());
         assertEquals(1700, testBudgetPlanner.getRemainingOfBudget());
