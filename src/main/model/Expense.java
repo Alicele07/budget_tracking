@@ -1,5 +1,6 @@
 package model;
 
+//create an Expense object with name, category, and amount to add into your expense list
 public class Expense {
     private int amount;
     private Category category;

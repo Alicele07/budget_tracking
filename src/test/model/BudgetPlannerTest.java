@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+//test constructors and methods in class BudgetPlanner
 class BudgetPlannerTest {
     private BudgetPlanner testBudgetPlanner;
 

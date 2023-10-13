@@ -5,6 +5,7 @@ import model.BudgetPlanner;
 import model.Category;
 import model.Expense;
 
+//budget tracking application
 public class BudgetTrackingApp {
     private Category category;
     private BudgetPlanner expenses;
@@ -13,6 +14,11 @@ public class BudgetTrackingApp {
         newExpensesList();
     }
 
+    //MODIFIES: this
+    /*EFFECTS: create a new expenses list, prompt user to enter their expenses,
+     *print out number of expenses, remaining, and sum
+     *prompt user if they want to see how many expenses in a particular category of their choice
+     */
     private void newExpensesList() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter a monthly budget: ");
@@ -38,6 +44,8 @@ public class BudgetTrackingApp {
         System.out.println("Total: " + expenses.getSumOfExpenses());
     }
 
+    //MODIFIES: this
+    //EFFECTS: add expense of user's choice into the list of expenses
     public void addExpense() {
         Scanner in = new Scanner(System.in);
         System.out.print("Insert new expense: ");
@@ -52,6 +60,10 @@ public class BudgetTrackingApp {
         expenses.addExpense(expense);
     }
 
+    //MODIFIES: this
+    /*EFFECTS: prompt user to enter a category of their choice and will print out
+    *how many expenses in that category
+     */
     public void seeNumOfCategory() {
         Scanner in = new Scanner(System.in);
         System.out.print("Insert category you want to see, choose from HOUSING, SUPPLIES, UTILITIES, "

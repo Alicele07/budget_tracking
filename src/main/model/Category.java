@@ -1,6 +1,6 @@
 package model;
 
-//declare a certain number of categories that users can choose from
+//this class declares a finite number of categories that users can choose from
 public enum Category {
     HOUSING,
     SUPPLIES,
