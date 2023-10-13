@@ -3,55 +3,53 @@ package model;
 import java.util.*;
 
 public class BudgetPlanner {
-    private int budget;
+    private final int budget;
     private List<Expense> expenses;
-    private List<Expense> categories;
 
     public BudgetPlanner(int budget) {
         this.budget = budget;
-        expenses = new ArrayList<Expense>();
+        expenses = new ArrayList<>();
     }
 
     public void addExpense(Expense expense) {
         expenses.add(expense);
     }
 
-    public String getListOfExpenses() {
-        String expenses = "Expenses\n" + "--------\n";
-        for (int i = 0; i < this.expenses.size(); i++) {
-            expenses += String.format("%s%10s%6s\n", this.expenses.get(i).getName(),
-                    this.expenses.get(i).getCategory(), this.expenses.get(i).getAmount());
-        }
-        return expenses;
+    public int getBudget() {
+        return budget;
     }
 
-    public String getNumOfCategories(Category category) {
-        categories = new ArrayList<Expense>();
-        String categories = "";
+    public String getListOfExpenses() {
+        StringBuilder expenses = new StringBuilder("Expenses\n" + "--------\n");
+        for (Expense e: this.expenses) {
+            expenses.append(String.format("%s%10s%6s\n", e.getName(), e.getCategory(), e.getAmount()));
+        }
+        return expenses.toString();
+    }
+
+    public int  getNumOfExpenses() {
+        return expenses.size();
+    }
+
+    public int getNumOfCategory(Category category) {
         int count = 0;
-        for (int i = 0; i < this.expenses.size(); i++) {
-            if (this.expenses.get(i).getCategory().equals(category)) {
-                this.categories.add(this.expenses.get(i));
+        for (Expense e: this.expenses) {
+            if (e.getCategory().equals(category)) {
                 count++;
             }
         }
-        for (int i = 0; i < this.categories.size(); i++) {
-            categories += String.format("%s%10s%6s\n", this.categories.get(i).getName(),
-                    this.categories.get(i).getCategory(), this.categories.get(i).getAmount());
-        }
-        return categories + "You have " + count + " expenses that are in " + category + ".";
+        return count;
     }
 
     public int getSumOfExpenses() {
         int sum = 0;
-        for (int i = 0; i < expenses.size(); i++) {
-            sum += expenses.get(i).getAmount();
+        for (Expense e: this.expenses) {
+            sum += e.getAmount();
         }
         return sum;
     }
 
     public int getRemainingOfBudget() {
-        int remaining = budget - getSumOfExpenses();
-        return remaining;
+        return getBudget() - getSumOfExpenses();
     }
 }

@@ -6,16 +6,14 @@ import model.Category;
 import model.Expense;
 
 public class BudgetTrackingApp {
-    private int amount;
     private Category category;
-    private String name;
     private BudgetPlanner expenses;
 
     public BudgetTrackingApp() {
         newExpensesList();
     }
 
-    public void newExpensesList() {
+    private void newExpensesList() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter a monthly budget: ");
         int budget = in.nextInt();
@@ -28,13 +26,14 @@ public class BudgetTrackingApp {
                 addExpense();
             } else {
                 System.out.print(expenses.getListOfExpenses());
+                System.out.print("Number of expenses: " + expenses.getNumOfExpenses());
                 System.out.println("Remaining: " + expenses.getRemainingOfBudget());
             }
         }
         System.out.print("Want to see the number of certain categories? Y/N ");
         String choose = in.next();
         if (choose.equals("Y")) {
-            seeNumOfCertainCategory();
+            seeNumOfCategory();
         }
         System.out.println("Total: " + expenses.getSumOfExpenses());
     }
@@ -42,24 +41,24 @@ public class BudgetTrackingApp {
     public void addExpense() {
         Scanner in = new Scanner(System.in);
         System.out.print("Insert new expense: ");
-        name = in.nextLine();
+        String name = in.nextLine();
         System.out.print("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
                 + "HEALTHCARE, PERSONAL, PETS, ENTERTAINMENT: ");
         String category = in.next();
         this.category = Category.valueOf(category);
         System.out.print("Insert amount: ");
-        amount = in.nextInt();
+        int amount = in.nextInt();
         Expense expense = new Expense(name, this.category, amount);
         expenses.addExpense(expense);
     }
 
-    public void seeNumOfCertainCategory() {
+    public void seeNumOfCategory() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
+        System.out.print("Insert category you want to see, choose from HOUSING, SUPPLIES, UTILITIES, "
                 + "HEALTHCARE, PERSONAL, PETS, ENTERTAINMENT: ");
         String category = in.next();
         this.category = Category.valueOf(category);
-        System.out.print(expenses.getNumOfCategories(this.category));
+        System.out.print(expenses.getNumOfCategory(this.category));
     }
 
 }
