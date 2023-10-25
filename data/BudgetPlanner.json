@@ -1,0 +1,20 @@
+{
+    "budget": 2100,
+    "expenses": [
+        {
+            "amount": 400,
+            "name": "grocery",
+            "category": "SUPPLIES"
+        },
+        {
+            "amount": 500,
+            "name": "rent",
+            "category": "HOUSING"
+        },
+        {
+            "amount": 50,
+            "name": "gify",
+            "category": "PERSONAL"
+        }
+    ]
+}

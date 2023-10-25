@@ -52,8 +52,13 @@ class BudgetPlannerTest {
         assertEquals(3, testBudgetPlanner.getNumOfExpenses());
         assertEquals(250, testBudgetPlanner.getSumOfExpenses());
         assertEquals(1850, testBudgetPlanner.getRemainingOfBudget());
-        assertEquals(1, testBudgetPlanner.getNumOfCategory(Category.SUPPLIES));
-        assertEquals(2, testBudgetPlanner.getNumOfCategory(Category.ENTERTAINMENT));
+        assertEquals("You have 1 expenses in SUPPLIES category.\n"
+                        + String.format("%s%10s%6s\n", "grocery", Category.SUPPLIES, 100),
+                testBudgetPlanner.getNumOfCategory(Category.SUPPLIES));
+        assertEquals("You have 2 expenses in ENTERTAINMENT category.\n"
+                        + String.format("%s%10s%6s\n", "club", Category.ENTERTAINMENT, 50)
+                        + String.format("%s%10s%6s\n", "arcade", Category.ENTERTAINMENT, 100),
+                testBudgetPlanner.getNumOfCategory(Category.ENTERTAINMENT));
     }
 
 

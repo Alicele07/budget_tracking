@@ -9,8 +9,9 @@
 - As a user, I want to be able to set an amount for my monthly budget.
 - As a user, I want to be able to add the category and amount of money of my spending into the expense list.
 - As a user, I want to be able to see how many expenses I have in total.
-- As a user, I want to be able to categorize my expenses.
 - As a user, I want to be able to calculate the frequency of a category.
 - As a user, I want to be able to calculate the sum of my monthly expenses and the remaining of my budget.
 - As a user, I want to be able to see the list of my monthly expenses.
+- As a user, I want to be able to save my expenses list to file (if I choose to do so)
+- As a user, I want to be able to reload my previously saved expenses list from file and continue to add onto the list (if I choose to do so)
 
