@@ -29,6 +29,8 @@ public class Expense implements Writable {
         return amount;
     }
 
+    //MODIFIES: this
+    //EFFECTS: override method toJson() of interface Writable, return this as JSON objects
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

@@ -9,6 +9,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//inherits JsonTest, test constructors and methods in JsonReader class
 public class JsonReaderTest extends JsonTest{
 
     @Test

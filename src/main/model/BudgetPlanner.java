@@ -78,6 +78,8 @@ public class BudgetPlanner implements Writable {
         return getBudget() - getSumOfExpenses();
     }
 
+    //MODIFIES: this
+    //EFFECTS: override method toJson() of interface Writable, return this as JSON objects
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -86,6 +88,8 @@ public class BudgetPlanner implements Writable {
         return json;
     }
 
+    //MODIFIES: this
+    //EFFECTS: return List<Expense> expenses as JSON object
     private JSONArray expensesToJson() {
         JSONArray jsonExpenses = new JSONArray();
 
