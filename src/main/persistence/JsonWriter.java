@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import java.io.*;
 
 //represent a writer and write BudgetPlanner from user input to JSON data and store them in file
+//citation: class JsonWriter of project JsonSerializationDemo
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

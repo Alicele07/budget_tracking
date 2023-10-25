@@ -13,6 +13,7 @@ import model.Expense;
 import org.json.*;
 
 //represent a reader and read expenses of BudgetPlanner from JSON data stored in file
+//citation: class JsonReader of project JsonSerializationDemo
 public class JsonReader {
     private final String source;
 
