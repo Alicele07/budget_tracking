@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 //inherits JsonTest, test constructors and methods in JsonWriter class
+//citation: class JsonWriterTest of project JsonSerializationDemo
 public class JsonWriterTest extends JsonTest{
 
     @Test
