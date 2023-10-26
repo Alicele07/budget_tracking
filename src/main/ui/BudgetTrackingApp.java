@@ -44,6 +44,7 @@ public class BudgetTrackingApp {
         }
     }
 
+    //EFFECTS: print out a number of choices for user to choose
     public void seeChoices() {
         System.out.println("Choose from one of the following choices");
         System.out.println("a - Add expense");
@@ -54,6 +55,7 @@ public class BudgetTrackingApp {
         System.out.println("q - Quit application ");
     }
 
+    //EFFECTS: process choices based on user's input
     public void processChoices(String choice) {
         switch (choice) {
             case "a":
@@ -113,6 +115,8 @@ public class BudgetTrackingApp {
         System.out.println(expenses.getNumOfCategory(this.category));
     }
 
+    //MODIFIES: this
+    //EFFECTS: save user's expense list to file
     private void saveExpensesList() {
         try {
             jsonWriter.open();
@@ -124,6 +128,8 @@ public class BudgetTrackingApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: load user's expense list from file
     private void loadExpensesList() {
         try {
             expenses = jsonReader.read();
