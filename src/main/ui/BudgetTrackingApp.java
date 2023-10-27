@@ -117,6 +117,7 @@ public class BudgetTrackingApp {
 
     //MODIFIES: this
     //EFFECTS: save user's expense list to file
+    //citation: class WorkroomApp of project JsonSerializationDemo
     private void saveExpensesList() {
         try {
             jsonWriter.open();
@@ -130,6 +131,7 @@ public class BudgetTrackingApp {
 
     //MODIFIES: this
     //EFFECTS: load user's expense list from file
+    //citation: class WorkroomApp of project JsonSerializationDemo
     private void loadExpensesList() {
         try {
             expenses = jsonReader.read();

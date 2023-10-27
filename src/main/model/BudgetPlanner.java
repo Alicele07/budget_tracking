@@ -80,6 +80,7 @@ public class BudgetPlanner implements Writable {
 
     //MODIFIES: this
     //EFFECTS: override method toJson() of interface Writable, return this as JSON objects
+    //citation: class Workroom of project JsonSerializationDemo
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -90,6 +91,7 @@ public class BudgetPlanner implements Writable {
 
     //MODIFIES: this
     //EFFECTS: return List<Expense> expenses as JSON object
+    //citation: class Workroom of project JsonSerializationDemo
     private JSONArray expensesToJson() {
         JSONArray jsonExpenses = new JSONArray();
 
