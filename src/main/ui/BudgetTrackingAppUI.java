@@ -25,9 +25,10 @@ public class BudgetTrackingAppUI {
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 
+    @SuppressWarnings({"checkstyle:AvoidEscapedUnicodeCharacters", "checkstyle:SuppressWarnings"})
     public BudgetTrackingAppUI() throws FileNotFoundException {
         frame = new JFrame("CPSC 210: BUDGET TRACKING APP");
-        ImageIcon image1 = new ImageIcon("/Users/alicele/Downloads/valentine.jpeg");
+        ImageIcon image1 = new ImageIcon("/Users/alicele/Downloads/valentine \uD83C\uDF37.jpeg");
         frame.add(new JLabel(image1));
         frame.pack();
         frame.setSize(736, 517);
