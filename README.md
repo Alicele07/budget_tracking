@@ -15,3 +15,11 @@
 - As a user, I want to be able to save my expenses list to file (if I choose to do so)
 - As a user, I want to be able to reload my previously saved expenses list from file and continue to add onto the list (if I choose to do so)
 
+### Instructions for Grader
+- Before you can start choosing options, you will see an gradient pink image and an input dialog asking for your budget amount; you must enter the amount of money for your budget.
+- To add expense to expense list, click the button that says "Add expense"; enter your expense name, category, and amount, then click "OK."
+- After adding an expense, you can see your expense by clicking on the button that says "See all expenses."
+- Or if you want to see expenses in a certain category, click on "See expenses in category", and then enter your desire category from the list of choices, then click "OK."
+- After finish adding your expense, if you choose to, you can save your expense list by clicking on the button that says "Save expense"; a message dialog will tell you that you have saved your data to a specified destination.
+- You can also choose to load your expense list by clicking on "Load previous expenses."
+- If you want to quit your application, click "Quit application."
