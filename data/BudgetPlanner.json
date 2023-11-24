@@ -10,11 +10,6 @@
             "amount": 500,
             "name": "rent",
             "category": "HOUSING"
-        },
-        {
-            "amount": 50,
-            "name": "gify",
-            "category": "PERSONAL"
         }
     ]
 }

@@ -1,22 +1,38 @@
 package ui;
 
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
 import model.*;
 import persistence.*;
+import static ui.PrintTableUI.*;
+
+import javax.swing.*;
 
 //budget tracking application
 public class BudgetTrackingAppUI {
     private static final String JSON_STORE = "./data/BudgetPlanner.json";
     private Category category;
     private BudgetPlanner expenses;
+    private final JFrame frame;
+    private JButton add;
+    private JButton print;
+    private JButton save;
+    private JButton load;
+    private JButton seeCategory;
+    private JButton quit;
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
-    private final Scanner in;
 
     public BudgetTrackingAppUI() throws FileNotFoundException {
-        in = new Scanner(System.in);
+        frame = new JFrame("CPSC 210: BUDGET TRACKING APP");
+        ImageIcon image1 = new ImageIcon("/Users/alicele/Downloads/valentine.jpeg");
+        frame.add(new JLabel(image1));
+        frame.pack();
+        frame.setSize(736, 517);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         newExpensesList();
@@ -28,79 +44,71 @@ public class BudgetTrackingAppUI {
      *prompt user if they want to see how many expenses in a particular category of their choice
      */
     private void newExpensesList() {
-        System.out.print("Enter a monthly budget: ");
-        int budget = in.nextInt();
+        int budget = Integer.parseInt(JOptionPane.showInputDialog("Enter a monthly budget: "));
         expenses = new BudgetPlanner(budget);
-        boolean keepGoing = true;
-        String choice;
-        while (keepGoing) {
-            seeChoices();
-            choice = in.next();
-            processChoices(choice);
-            System.out.println();
-            if (choice.equals("q")) {
-                keepGoing = false;
-            }
-        }
+        seeChoices();
+        processChoices();
+        quit.addActionListener(e -> frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)));
     }
 
     //EFFECTS: print out a number of choices for user to choose
     public void seeChoices() {
-        System.out.println("Choose from one of the following choices");
-        System.out.println("a - Add expense");
-        System.out.println("e - See all expenses");
-        System.out.println("c - See expenses in category");
-        System.out.println("s - Save expense");
-        System.out.println("l - Load previous expenses");
-        System.out.println("q - Quit application ");
+        JPanel panel = new JPanel();
+        JLabel promptUser = new JLabel("Choose from one of the following choices", JLabel.CENTER);
+        promptUser.setSize(panel.WIDTH, panel.HEIGHT / 3);
+        panel.add(promptUser);
+
+        add = new JButton("Add expense");
+        print = new JButton("See all expenses");
+        save = new JButton("Save expense");
+        load = new JButton("Load previous expenses");
+        seeCategory = new JButton("See expenses in category");
+        quit = new JButton("Quit application");
+
+
+        panel.setLayout(new FlowLayout());
+        panel.add(add);
+        panel.add(print);
+        panel.add(save);
+        panel.add(load);
+        panel.add(seeCategory);
+        panel.add(quit);
+        panel.setSize(panel.WIDTH, panel.HEIGHT / 6);
+        frame.add(panel);
+        frame.setVisible(true);
     }
 
     //EFFECTS: process choices based on user's input
-    public void processChoices(String choice) {
-        switch (choice) {
-            case "a":
-                addExpense();
-                break;
-            case "e":
-                seeExpenses();
-                break;
-            case "s":
-                saveExpensesList();
-                break;
-            case "l":
-                loadExpensesList();
-                break;
-            case "c":
-                seeNumOfCategory();
-                break;
-            default:
-                System.out.print("Selection not valid. Please try again.");
-                break;
-        }
+    public void processChoices() {
+        add.addActionListener(e -> addExpense());
+
+        print.addActionListener(e -> seeExpenses());
+
+        save.addActionListener(e -> saveExpensesList());
+
+        load.addActionListener(e -> loadExpensesList());
+
+        seeCategory.addActionListener(e -> seeNumOfCategory());
     }
 
     //MODIFIES: this
     //EFFECTS: add expense of user's choice into the list of expenses
     public void addExpense() {
-        System.out.print("Insert new expense: ");
-        String name = in.next();
-        System.out.print("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
+        String name = JOptionPane.showInputDialog("Insert new expenses: ");
+        String category = JOptionPane.showInputDialog("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
                 + "HEALTHCARE, PERSONAL, PETS, ENTERTAINMENT: ");
-        String category = in.next();
         this.category = Category.valueOf(category);
-        System.out.print("Insert amount: ");
-        int amount = in.nextInt();
+        int amount = Integer.parseInt(JOptionPane.showInputDialog("Insert amount: "));
         Expense expense = new Expense(name, this.category, amount);
         expenses.addExpense(expense);
     }
 
     //EFFECTS: print out list of expenses, number of expenses, remaining, and sum
     public void seeExpenses() {
-        System.out.println("Expenses\n" + "--------");
-        System.out.print(expenses.getListOfExpenses());
-        System.out.println("Number of expenses: " + expenses.getNumOfExpenses());
-        System.out.println("Total: " + expenses.getSumOfExpenses());
-        System.out.println("Remaining: " + expenses.getRemainingOfBudget());
+        new PrintTableUI(expenses.getExpenses());
+        JOptionPane.showMessageDialog(getFrame(), "Number of expenses: " + expenses.getNumOfExpenses()
+                    + "\nTotal: " + expenses.getSumOfExpenses()
+                    + "\nRemaining: " + expenses.getRemainingOfBudget());
     }
 
     //MODIFIES: this
@@ -108,11 +116,10 @@ public class BudgetTrackingAppUI {
      *how many expenses in that category
      */
     public void seeNumOfCategory() {
-        System.out.print("Insert category you want to see, choose from HOUSING, SUPPLIES, UTILITIES, "
+        String category = JOptionPane.showInputDialog("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
                 + "HEALTHCARE, PERSONAL, PETS, ENTERTAINMENT: ");
-        String category = in.next();
         this.category = Category.valueOf(category);
-        System.out.println(expenses.getNumOfCategory(this.category));
+        sortByCategory(this.category);
     }
 
     //MODIFIES: this
@@ -123,9 +130,9 @@ public class BudgetTrackingAppUI {
             jsonWriter.open();
             jsonWriter.write(expenses);
             jsonWriter.close();
-            System.out.println("Saved my expenses list to " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame,"Saved my expenses list to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame,"Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -135,9 +142,9 @@ public class BudgetTrackingAppUI {
     private void loadExpensesList() {
         try {
             expenses = jsonReader.read();
-            System.out.println("Loaded my expenses list from " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame, "Loaded my expenses list from " + JSON_STORE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(frame,"Unable to read from file: " + JSON_STORE);
         }
     }
 }
