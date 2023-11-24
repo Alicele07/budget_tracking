@@ -25,6 +25,9 @@ public class BudgetTrackingAppUI {
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 
+
+    //MODIFIES: this
+    //EFFECTS: create a frame with image anf title "CPSC 210: BUDGET TRACKING APP"
     public BudgetTrackingAppUI() throws FileNotFoundException {
         frame = new JFrame("CPSC 210: BUDGET TRACKING APP");
         ImageIcon image1 = new ImageIcon("valentine.jpeg");
@@ -42,6 +45,7 @@ public class BudgetTrackingAppUI {
     /*EFFECTS: create a new expenses list, prompt user to enter their expenses,
      *print out number of expenses, remaining, and sum
      *prompt user if they want to see how many expenses in a particular category of their choice
+     *prompt user if they want to quit the application
      */
     private void newExpensesList() {
         int budget = Integer.parseInt(JOptionPane.showInputDialog("Enter a monthly budget: "));
@@ -51,9 +55,11 @@ public class BudgetTrackingAppUI {
         quit.addActionListener(e -> frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)));
     }
 
-    //EFFECTS: print out a number of choices for user to choose
+    //MODIFIES: this
+    //EFFECTS: display buttons of choices for user to choose
     public void seeChoices() {
         JPanel panel = new JPanel();
+        panel.setBackground(Color.decode("#dab2ae"));
         JLabel promptUser = new JLabel("Choose from one of the following choices", JLabel.CENTER);
         promptUser.setSize(panel.WIDTH, panel.HEIGHT / 3);
         panel.add(promptUser);
@@ -78,7 +84,7 @@ public class BudgetTrackingAppUI {
         frame.setVisible(true);
     }
 
-    //EFFECTS: process choices based on user's input
+    //EFFECTS: process choices based on what button did user click on
     public void processChoices() {
         add.addActionListener(e -> addExpense());
 
@@ -103,7 +109,7 @@ public class BudgetTrackingAppUI {
         expenses.addExpense(expense);
     }
 
-    //EFFECTS: print out list of expenses, number of expenses, remaining, and sum
+    //EFFECTS: show user their list of expenses, number of expenses, remaining, and sum
     public void seeExpenses() {
         new PrintTableUI(expenses.getExpenses());
         JOptionPane.showMessageDialog(getFrame(), "Number of expenses: " + expenses.getNumOfExpenses()

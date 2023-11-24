@@ -11,6 +11,8 @@ public class PrintTableUI extends JTable {
     private static JTable expenseTable;
     private static DefaultTableModel defaultTableModel;
 
+    //MODIFIES: this
+    //EFFECTS: create a table to store user's expenses
     public PrintTableUI(List<Expense> expenses) {
         frame = new JFrame("Expense Table");
         copyListToArray(expenses);
@@ -22,6 +24,8 @@ public class PrintTableUI extends JTable {
         frame.setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: copy list of expense to array to store in expense table
     public static void copyListToArray(List<Expense> expenses) {
         String[][] data = new String[expenses.size()][column.length];
         for (int j = 0; j < expenses.size(); j++) {
@@ -43,6 +47,11 @@ public class PrintTableUI extends JTable {
         return frame;
     }
 
+    //REQUIRES: c cannot be different from what defined in Category enum
+    //MODIFIES: this
+    /*EFFECTS: create a frame and a table to store expense of the category
+    *chose by user
+    */
     public static void sortByCategory(Category c) {
         JFrame jframe = new JFrame("Category Table");
         List<Expense> category = new ArrayList<>();
@@ -59,7 +68,7 @@ public class PrintTableUI extends JTable {
         JScrollPane sp = new JScrollPane(tableCategory);
         jframe.add(sp);
         jframe.setSize(500, 200);
-        JOptionPane.showMessageDialog(frame, "You have " + tableCategory.getColumnCount()
+        JOptionPane.showMessageDialog(jframe, "You have " + tableCategory.getRowCount()
                 + " expenses in " + c + " category.");
         jframe.setVisible(true);
     }
