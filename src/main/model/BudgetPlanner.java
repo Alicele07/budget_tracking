@@ -26,6 +26,7 @@ public class BudgetPlanner implements Writable {
     //EFFECTS: add new expense to ArrayList expenses
     public void addExpense(Expense expense) {
         expenses.add(expense);
+        EventLog.getInstance().logEvent(new Event("Added expense: " + expense.getName()));
     }
 
     public int getBudget() {
@@ -38,6 +39,7 @@ public class BudgetPlanner implements Writable {
         for (Expense e: this.expenses) {
             expenses.append(String.format("%s%10s%6s\n", e.getName(), e.getCategory(), e.getAmount()));
         }
+        EventLog.getInstance().logEvent(new Event("See all expenses"));
         return expenses.toString();
     }
 
@@ -47,6 +49,7 @@ public class BudgetPlanner implements Writable {
 
     //EFFECTS: get the number of expenses
     public int  getNumOfExpenses() {
+        EventLog.getInstance().logEvent(new Event("Get total number of expenses"));
         return expenses.size();
     }
 
@@ -60,6 +63,7 @@ public class BudgetPlanner implements Writable {
                 sb.append(String.format("%s%10s%6s\n", e.getName(), e.getCategory(), e.getAmount()));
             }
         }
+        EventLog.getInstance().logEvent(new Event("See expense in category: " + category));
         return "You have " + count + " expenses in " + category + " category.\n" + sb;
     }
 
@@ -70,11 +74,13 @@ public class BudgetPlanner implements Writable {
         for (Expense e: this.expenses) {
             sum += e.getAmount();
         }
+        EventLog.getInstance().logEvent(new Event("Get total amount of money spent for expenses"));
         return sum;
     }
 
     //EFFECTS: get the remaining of budget after user enter in their expenses
     public int getRemainingOfBudget() {
+        EventLog.getInstance().logEvent(new Event("Get the remaining budget for spending"));
         return getBudget() - getSumOfExpenses();
     }
 

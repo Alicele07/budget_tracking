@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import model.*;
+import model.Event;
 import persistence.*;
 import static ui.PrintTableUI.*;
 
@@ -52,7 +53,12 @@ public class BudgetTrackingAppUI {
         expenses = new BudgetPlanner(budget);
         seeChoices();
         processChoices();
-        quit.addActionListener(e -> frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)));
+        quit.addActionListener(e -> {
+            for (Event event : EventLog.getInstance()) {
+                System.out.println(event);
+            }
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        });
     }
 
     //MODIFIES: this
@@ -125,6 +131,7 @@ public class BudgetTrackingAppUI {
         String category = JOptionPane.showInputDialog("Insert category, choose from HOUSING, SUPPLIES, UTILITIES, "
                 + "HEALTHCARE, PERSONAL, PETS, ENTERTAINMENT: ");
         this.category = Category.valueOf(category);
+        expenses.getNumOfCategory(this.category);
         sortByCategory(this.category);
     }
 
