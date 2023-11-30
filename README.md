@@ -50,3 +50,4 @@
 
 ### Phase 4: Task 3
 ![UML Diagram](JPEG%20image-41A1-BDDF-15-0.jpeg)
+- One refactoring that I would do for my project is instead of asking user new budget every time the program runs, I would have two more options: "Making a new expense list" and "Remain in the current expense list". Therefore, if user chooses to make a new one then I'm going to ask them to enter new budget for new expense list, else I would not ask and just show them their current expense list with the remaining of their budget.
