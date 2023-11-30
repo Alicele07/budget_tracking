@@ -23,3 +23,30 @@
 - After finish adding your expense, if you choose to, you can save your expense list by clicking on the button that says "Save expense"; a message dialog will tell you that you have saved your data to a specified destination.
 - You can also choose to load your expense list by clicking on "Load previous expenses."
 - If you want to quit your application, click "Quit application."
+
+### Phase 4: Task 2
+- Wed Nov 29 15:51:47 PST 2023
+  Added expense: grocery
+- Wed Nov 29 15:51:48 PST 2023
+  Get total number of expenses
+- Wed Nov 29 15:51:48 PST 2023
+  Get total amount of money spent for expenses
+- Wed Nov 29 15:51:48 PST 2023
+  Get the remaining budget for spending
+- Wed Nov 29 15:51:48 PST 2023
+  Get total amount of money spent for expenses
+- Wed Nov 29 15:51:54 PST 2023
+  Added expense: rent
+- Wed Nov 29 15:51:56 PST 2023
+  Get total number of expenses
+- Wed Nov 29 15:51:56 PST 2023
+  Get total amount of money spent for expenses
+- Wed Nov 29 15:51:56 PST 2023
+  Get the remaining budget for spending
+- Wed Nov 29 15:51:56 PST 2023
+  Get total amount of money spent for expenses
+- Wed Nov 29 15:52:01 PST 2023
+  See expense in category: HOUSING
+
+### Phase 4: Task 3
+![UML Diagram](JPEG%20image-41A1-BDDF-15-0.jpeg)

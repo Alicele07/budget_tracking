@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class EventTest {
     private Event e;
@@ -32,4 +33,12 @@ public class EventTest {
     public void testToString() {
         assertEquals(d.toString() + "\n" + "Add expense", e.toString());
     }
+
+    @Test
+    void testEquals() {
+        Event e1 = new Event("Add expense");
+        assertEquals("Add expense", e.getDescription());
+        assertFalse(e1.equals(e));
+    }
+
 }
